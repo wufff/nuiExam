@@ -1,0 +1,24 @@
+view { box-sizing: border-box;}
+page { background-color: #f1f1f1;font-size: 28rpx;}
+ .space-global {
+	    height: 44px;
+   }
+ .is_bottom {
+ 	height: 56rpx;
+ 	line-height: 56rpx;
+ 	text-align: center;
+ 	color: #919191;
+ 	width: 100%;
+ 	font-size: 26rpx;
+ }  
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+//底部系统默认给了 998
+.header-index { z-index:1000;}
+.selecBox { z-index: 999;}
+.selectTitle {
+	z-index: 1000;
+}

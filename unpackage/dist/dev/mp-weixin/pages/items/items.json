@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "header-filter": "/components/header-filter/header-filter",
+    "select-box": "/components/select-box/select-box",
+    "downlist-vertical": "/components/downlist-vertical/downlist-vertical",
+    "tree": "/components/tree/tree",
+    "item-list": "/components/item-list/item-list"
+  }
+}

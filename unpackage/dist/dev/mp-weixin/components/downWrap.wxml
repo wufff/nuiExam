@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['hide',['$event']]]]]}}" hidden="{{!(visable)}}" class="selecBox" style="{{'padding-top:'+(paddTop+'px')+';'}}" bindtap="__e"><view data-event-opts="{{[['tap',[['',['$event']]]]]}}" class="{{['content animated',(visable)?'fadeInUpMin':'']}}" catchtap="__e"><slot></slot></view></view>

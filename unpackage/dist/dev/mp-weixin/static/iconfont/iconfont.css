@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('~@/static/iconfont/iconfont.ttf'); 
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconright1:before {
+  content: "\e607";
+}
+
+.icondown1:before {
+  content: "\e6e9";
+}
+
+.iconright:before {
+  content: "\e72d";
+}
+
+.iconwodefankui:before {
+  content: "\e656";
+}
+
+.iconcuotiku:before {
+  content: "\e61a";
+}
+
+.iconless:before {
+  content: "\e629";
+}
+
+.iconfenlei:before {
+  content: "\e611";
+}
+
+.iconicon--:before {
+  content: "\e70e";
+}
+
+.icondown:before {
+  content: "\e69b";
+}
+
+.iconzu:before {
+  content: "\e627";
+}
+
+
+
+
