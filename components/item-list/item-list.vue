@@ -97,7 +97,7 @@
 			   	method: "post",
 			   	data: data
 			   });
-			   console.log(res);
+			   // console.log(res);
 			   this.dataList = res.data;
 			   this.num = this.dataList.length;
 			   this.totlePage = res.total_page;
