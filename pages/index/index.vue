@@ -14,11 +14,11 @@
 		<view class="space-global"></view>
 		<view class="vip-title">开通VIP享更多会员特效</view>
 		<view class="nav-index">
-			 <view class="nav-item">
+			 <view class="nav-item" @tap="goItems">
 				 <image  src="../../static/img/bases.png"></image>
 				 <view class="nav-text">知识点选题</view>
-			 </view>
-			 <view class="nav-item">
+			</view>
+			 <view class="nav-item" url="/pages/items/items" open-type="switchTab">
 				 <image src="../../static/img/selects.png" ></image>
 				 <view class="nav-text">试卷下载</view>
 			 </view>
@@ -41,6 +41,9 @@
 		onLoad() {
 			this.getSub();
 		},
+		onShow(){
+			getApp().globalData.itemsOpen = false
+		},
 		methods: {
 			showSubList(){
 				this.$refs.subList.show();
@@ -48,6 +51,10 @@
 			choiceSub(obj){
 				this.headData = obj;
 				uni.setStorageSync("sub",this.headData);
+			},
+			goItems(){
+				getApp().globalData.itemsOpen = true;
+				uni.switchTab({url:"/pages/items/items"})
 			},
             async getData(){
 				const res = await this.$http({
@@ -74,12 +81,11 @@
 			    } 
 				const subStore = uni.getStorageSync("sub");
 				const num = uni.getStorageSync("num");
-				console.log(num)
 				if(subStore){
 					this.headData = subStore;
 				}else{
 					 this.headData = {
-						 stage_code:0,
+						 stage_code:2,
 						 subject_code: this.subData[0][0].subject_code,
 						 subject_name: this.subData[0][0].subject_name
 					 }

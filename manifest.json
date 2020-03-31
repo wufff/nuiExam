@@ -72,5 +72,12 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
+    },
+    "h5" : {
+        "title" : "组卷助手",
+		"publicPath":"./",
+        "router" : {
+            "mode" : "hash"
+        }
     }
 }

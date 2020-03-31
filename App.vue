@@ -1,5 +1,8 @@
 <script>
 	export default {
+		 globalData: {  
+		     itemsOpen:false
+		},
 		onLaunch: function() {
 			// console.log('App Launch')
 		},

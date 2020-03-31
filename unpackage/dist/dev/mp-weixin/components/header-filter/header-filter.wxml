@@ -1,1 +1,0 @@
-<view class="header-index"><view data-event-opts="{{[['tap',[['showlist',['$event']]]]]}}" class="icon iconfont classify" bindtap="__e"></view><slot></slot></view>
