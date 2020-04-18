@@ -1,6 +1,6 @@
 <template>
 	 <view class="selecBox" v-show="visable" :style="{ paddingTop: paddTop + 'px' }" @tap="hide">
-		 <view class="content animated" :class="{fadeInUpMin:visable}" @tap.stop>
+		 <view class="wrap-content animated" :class="{fadeInUpMin:visable}" @tap.stop>
 			 <!-- <scroll-view scroll-y="true" class="scroll"> -->
 			     <slot></slot>
 		     <!-- </scroll-view> 	 -->
@@ -44,7 +44,7 @@
 		  top: 0;
 		  background-color: rgba(0,0,0,.5);
 		  padding-top: 46px;
-		  .content{
+		  .wrap-content{
 			  background-color: #FFFFFF;
 			  width: 100%;
 			  padding:0 0 0 30rpx;
