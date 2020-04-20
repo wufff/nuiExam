@@ -91,7 +91,7 @@
 				menu: [], //顶部横条数据
 				showPage: -1, //菜单页面显示/隐藏动画控制
 				pageState: [], //页面的状态
-				activeMenuArr: [], //UI状态
+				activeMenuArr: [], //选中记录
 				shadowActiveMenuArr: [], //记录选中
 				defaultActive:[],
 				triangleDeg: [], //小三角形的翻转动画控制
@@ -127,7 +127,7 @@
 			},
 			defaultSelected(newVal) {
 				if(newVal.length==0){
-					return;
+				   
 				}
 				this.defaultActive = JSON.parse(JSON.stringify(newVal));
 				this.activeMenuArr = JSON.parse(JSON.stringify(newVal));
@@ -139,11 +139,11 @@
 		},
 		methods: {
 			initMenu() {
-				let tmpMenuActiveArr=[];
-				let tmpMenu=[];
+				let tmpMenuActiveArr=[]; //vualue
+				let tmpMenu=[]; //顶部数组
 				for (let i = 0; i < this.filterData.length; i++) {
 					let tmpitem = this.filterData[i];
-					tmpMenu.push({
+					tmpMenu.push({  //组装顶部数组
 						//如果没有设置name，则取第一个菜单作为menu.name,filter类型则将"筛选"作为menu.name
 						name: tmpitem.name || (tmpitem.type == "filter" ? "筛选" : tmpitem.submenu[0].name),
 						type: tmpitem.type
@@ -158,9 +158,11 @@
 					tmpitem = this.processSubMenu(tmpitem);
 					this.filterData[i] = tmpitem;
 				}
+				// console.log(tmpMenuActiveArr)
+				
 				this.menu = tmpMenu;
 				//初始化选中项数组
-				tmpMenuActiveArr = this.defaultActive.length>0?this.defaultActive:this.activeMenuArr.length>0?this.activeMenuArr:tmpMenuActiveArr;
+				tmpMenuActiveArr = this.defaultActive.length>0 ? this.defaultActive:this.activeMenuArr.length>0 ? this.activeMenuArr:tmpMenuActiveArr;
 				this.defaultActive = [];
 				this.activeMenuArr = JSON.parse(JSON.stringify(tmpMenuActiveArr));
 				this.shadowActiveMenuArr = JSON.parse(JSON.stringify(tmpMenuActiveArr));
@@ -171,7 +173,9 @@
 					this.setMenuName();
 				}
 			},
+			
 			setMenuName(){
+				//给tab赋值
 				for(var i=0;i<this.activeMenuArr.length;i++){
 					let row = this.activeMenuArr[i];
 					if (typeof(row[0]) != 'object'){
@@ -253,8 +257,7 @@
 				this.$forceUpdate();
 			},
 			//选中单选类label-UI状态
-			selectRadioLabel(page_index, box_index, label_index) {
-				
+			selectRadioLabel(page_index,box_index, label_index) {
 				let activeIndex = this.activeMenuArr[page_index][box_index][0];
 				if(activeIndex == label_index){
 					this.subData[page_index].submenu[box_index].submenu[activeIndex].selected = false;
@@ -294,9 +297,7 @@
 			showMask() {
 				this.maskVisibility = true;
 				this.$nextTick(() => {
-					setTimeout(() => {
-						this.isShowMask = true;
-					}, 0);
+					this.isShowMask = true;
 				})
 			},
 			//hide菜单页
@@ -429,15 +430,16 @@
 					}
 				} 
 			},
-			processActive(tmpitem) {
+			processActive(tmpitem) { //每一项 将层级排列成数组
 				let tmpArr = []
 				if (tmpitem.type == 'hierarchy'&&tmpitem.hasOwnProperty('submenu')&&tmpitem.submenu.length>0) {
+					//类型为hierarchy 有子项 且子项 有内容
 					let level = this.getMaxFloor(tmpitem.submenu);
 					while (level > 0) {
 						tmpArr.push(0);
 						level--;
 					}
-				} else if (tmpitem.type == 'filter') {
+				} else if (tmpitem.type == 'filter') { 
 					let level = tmpitem.submenu.length;
 					while (level > 0) {
 						tmpArr.push([]);
@@ -452,7 +454,7 @@
 				}
 				return tmpArr;
 			},
-			processSubMenu(menu) {
+			processSubMenu(menu) { //递归处理子菜单数据 应该是只是为了统一格式
 				if (menu.hasOwnProperty('submenu') && menu.submenu.length > 0) {
 					for (let i = 0; i < menu.submenu.length; i++) {
 						menu.submenu[i] = this.processSubMenu(menu.submenu[i]);
@@ -519,10 +521,8 @@
 			align-items: center;
 			justify-content: center;
 			transition: color .2s linear;
-
 			&.on {
-				color: #ec652b;
-
+				 color: #ec652b;
 				.iconfont {
 					color: #ec652b;
 				}
